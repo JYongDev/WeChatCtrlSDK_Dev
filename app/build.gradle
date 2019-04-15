@@ -1,0 +1,80 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "com.developer.jyong.wechatctrlsdk"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        ndk {
+            moduleName "WeChatCtrlSDK"
+            abiFilters 'armeabi-v7a'
+            ldLibs "log"
+        }
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    /*sourceSets {
+        main {
+//            jniLibs.srcDirs = ['libs']
+//            jniLibs.srcDirs = ['']
+        }
+    }*/
+
+    externalNativeBuild {
+        cmake {
+            path 'CMakeLists.txt'
+        }
+    }
+
+    android {
+        lintOptions {
+            abortOnError false
+        }
+    }
+}
+
+task buildMyJar(type: Jar, dependsOn: ['build']) {
+    archiveName = 'origin.jar'
+//    from('libs')
+    from('build/intermediates/classes/debug')
+    destinationDir = file('build/libs')
+    exclude('com/android/test/library/BuildConfig.class')
+    exclude('*R.class')
+    include('com/developer/jyong/wechatctrlsdk/inject/info/*.class')
+    include('com/developer/jyong/wechatctrlsdk/inject/proxy/*.class')
+    include('com/developer/jyong/wechatctrlsdk/inject/tool/*.class')
+    include('com/developer/jyong/wechatctrlsdk/inject/core/contact/*.class')
+    include('com/developer/jyong/wechatctrlsdk/inject/core/main/*.class')
+    include('com/developer/jyong/wechatctrlsdk/inject/core/message/*.class')
+    include('com/developer/jyong/wechatctrlsdk/inject/core/moment/*.class')
+    include('com/developer/jyong/wechatctrlsdk/inject/core/room/*.class')
+}
+
+//task buildMyJar(type: Jar, dependsOn: ['build']) {
+//    archiveName = 'WeChatCtrlSDK.jar'
+//    from('libs')
+//    from('build/intermediates/classes/debug')
+//    destinationDir = file('build/libs')
+//    exclude('com/android/test/library/BuildConfig.class')
+//    exclude('*R.class')
+//    include('com/developer/jyong/wechatctrlsdk/CtrlSDK.class')
+//    include('com/developer/jyong/wechatctrlsdk/ReflexUtil.class')
+//}
+
+dependencies {
+    provided files('libs/XposedBridgeApi-54.jar')
+
+}
