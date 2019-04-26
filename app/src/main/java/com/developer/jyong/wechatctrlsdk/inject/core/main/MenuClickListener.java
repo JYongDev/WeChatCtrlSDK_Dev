@@ -46,7 +46,7 @@ public class MenuClickListener implements MenuItem.OnMenuItemClickListener {
                 Emitter.sendVideo("HJY894199032", Environment.getExternalStorageDirectory().getPath() + File.separator + "haha.mp4", FieldTool.instance().getActivity(), classLoader);
                 break;
             case "link":
-                Emitter.transmitLink("1301", "HJY894199032", classLoader);
+                Emitter.transmitLink("269", "HJY894199032", classLoader);
                 break;
             case "card":
                 Emitter.sendCard("HJY894199032", "wxid_owhdh9f0taut22", classLoader);
@@ -93,13 +93,13 @@ public class MenuClickListener implements MenuItem.OnMenuItemClickListener {
                 Contact.agreeFriends("HJY894199032", classLoader);
                 break;
             case "subscriptionCard":
-                Emitter.sendSubscriptionCard("HJY894199032", "gh_047f96c8be56", classLoader);
+                Emitter.sendSubscriptionCard("HJY894199032", "gh_bbb5e9aed938", classLoader);
                 break;
             case "amendRemark":
                 Contact.amendRemark("HJY894199032", "Happy2019", classLoader);
                 break;
             case "remittance":
-                Emitter.acceptRemittance("231", classLoader);
+                Emitter.acceptRemittance("273", classLoader);
                 break;
             case "delContacts":
                 Contact.delContact("HJY894199032", classLoader);
